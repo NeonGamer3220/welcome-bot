@@ -28,6 +28,7 @@ def save_count(data):
 # Bot setup
 intents = discord.Intents.default()
 intents.members = True  # Required to track member joins
+intents.message_content = True  # Required for commands to work
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
