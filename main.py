@@ -64,6 +64,40 @@ async def on_member_join(member):
     print(f"Welcome message sent for {member.name} - they are player #{count}")
 
 @bot.command()
+async def invite(ctx):
+    """Generate an invite link with the required permissions for the bot"""
+    # Define required permissions
+    permissions = discord.Permissions(
+        send_messages=True,
+        embed_links=True,
+        read_message_history=True,
+        use_external_emojis=True
+    )
+    
+    # Create invite URL
+    invite_url = discord.utils.oauth_url(
+        client_id=bot.user.id,
+        permissions=permissions
+    )
+    
+    embed = discord.Embed(
+        title="🤖 Bot Invite Link",
+        description="Use this link to invite the bot to your server:",
+        color=discord.Color.green()
+    )
+    embed.add_field(
+        name="Invite URL",
+        value=f"[Click here to invite]({invite_url})"
+    )
+    embed.add_field(
+        name="Required Permissions",
+        value="- Send Messages\n- Embed Links\n- Read Message History\n- Use External Emojis\n- Server Members Intent (enabled in Discord Developer Portal)"
+    )
+    embed.set_footer(text="Note: Make sure to enable 'Server Members Intent' in the Bot section of Discord Developer Portal!")
+    
+    await ctx.send(embed=embed)
+
+@bot.command()
 async def count(ctx):
     """Check the current member count"""
     data = load_count()
