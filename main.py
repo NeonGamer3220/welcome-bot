@@ -121,8 +121,16 @@ if __name__ == "__main__":
         print("You can create a .env file with: DISCORD_TOKEN=your_token_here")
         exit(1)
     
+    # Debug: Show first few characters of token (don't show full for security)
+    if len(token) < 10:
+        print(f"ERROR: Token seems too short: {token}")
+        print("Please make sure you're using a full bot token, not the client secret!")
+        exit(1)
+    
+    print(f"DEBUG: Token starts with: {token[:10]}...")
     print(f"Starting welcome bot...")
     print(f"Welcome channel: {config.get('WELCOME_CHANNEL_ID')}")
     print(f"Welcome message: {config.get('WELCOME_MESSAGE')}")
+    print(f"Intents: members={intents.members}, message_content={intents.message_content}")
     
     bot.run(token)
