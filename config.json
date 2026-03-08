@@ -1,0 +1,11 @@
+{
+  "WELCOME_CHANNEL_ID": 1479952087117856861,
+  "WELCOME_MESSAGE": "Welcome to the server {member}! You are the {count} player, please read the rules and after that, have fun!",
+  "COUNT_FILE": "member_count.json",
+  "INVITE_PERMISSIONS": {
+    "send_messages": true,
+    "embed_links": true,
+    "read_message_history": true,
+    "use_external_emojis": true
+  }
+}
